@@ -1,0 +1,5 @@
+./server/node_modules
+/server/node_modules
+./rock-paper-scissors/node_modules
+/rock-paper-scissors/node_modules
+

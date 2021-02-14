@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Button, Grid, Paper, TextField, withStyles, ListItem, List, ListItemText, ListItemAvatar, Avatar } from "@material-ui/core";
+import { Button, Grid, Paper, TextField, withStyles, List } from "@material-ui/core";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import { services } from "../services";
-import { Colors } from "../styles/colors";
 import io from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
 import { client } from "../config/client";
@@ -12,6 +11,7 @@ import { connect } from "react-redux";
 import { createRoom } from "../redux/actions/auth.action";
 import "../App.css";
 import "./styles/signin.css";
+import ListRoom from "./components/ListRoom";
 
 const CssTextField = withStyles({
   root: {
@@ -121,75 +121,16 @@ export class SignIn extends Component {
     const { authReducers } = this.props;
     const { myRoom } = authReducers;
     return (
-      <div
-        style={{
-          display: "flex",
-          flex: 1,
-          minHeight: "100vh",
-          justifyContent: "center",
-          backgroundColor: Colors.primary
-        }}>
-        <Paper
-          elevation={5}
-          style={{
-            display: "flex",
-            alignSelf: "center",
-            backgroundColor: "#fff",
-            height: "60vh",
-            width: "60vw",
-            borderRadius: 3,
-            flexDirection: "column",
-            overflow: "hidden"
-          }}>
-          <div
-            style={{
-              backgroundColor: "#5499C7",
-              width: "100%",
-              padding: 10
-            }}>
-            <p
-              style={{
-                color: "#fff",
-                fontWeight: "bold"
-              }}>
-              Rock Paper Scissors Game
-            </p>
+      <div className="container">
+        <Paper elevation={5} className="sub-container">
+          <div className="header-container">
+            <p className="label-header">Rock Paper Scissors Game</p>
           </div>
-          <Grid
-            style={{
-              // backgroundColor: "#efefef",
-              height: "100%",
-              display: "flex",
-              flex: 1
-            }}
-            container
-            spacing={0}>
+          <Grid className="grid-container" container spacing={0}>
             <Grid item xs={12} sm={6} lg={6}>
-              <div
-                style={{
-                  padding: 10,
-                  backgroundColor: "#fff",
-                  display: "flex",
-                  flexDirection: "column",
-                  flex: 1,
-                  height: "100%",
-                  alignItems: "center",
-                  justifyContent: "center"
-                }}>
-                <h1
-                  style={{
-                    textAlign: "center"
-                  }}>
-                  Username
-                </h1>
-                <div
-                  style={{
-                    padding: "20%",
-                    paddingTop: 0,
-                    paddingBottom: 0,
-                    alignItems: "center",
-                    justifyContent: "center"
-                  }}>
+              <div className="item-grid-container">
+                <h1>Username</h1>
+                <div className="container-input">
                   <CssTextField
                     autoFocus
                     onChange={this.usernameInput}
@@ -209,14 +150,7 @@ export class SignIn extends Component {
                     }}
                   />
                 </div>
-                <div
-                  style={{
-                    height: 40,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginTop: "10%"
-                  }}>
+                <div className="container-button">
                   <Button
                     onClick={this._continue}
                     disabled={!this.state.disabled}
@@ -231,74 +165,15 @@ export class SignIn extends Component {
                 </div>
               </div>
             </Grid>
-            <Grid
-              style={{
-                backgroundColor: "#efefef",
-                height: "100%",
-                display: "flex",
-                flex: 1,
-                width: "100%"
-              }}
-              item
-              xs={12}
-              sm={6}
-              lg={6}>
-              <div
-                style={{
-                  padding: 10,
-                  // backgroundColor: "red",
-                  display: "flex",
-                  flexDirection: "column",
-                  flex: 1,
-                  width: "100%"
-                }}>
+            <Grid className="item-second-grid" item xs={12} sm={6} lg={6}>
+              <div className="sub-item-second-grid">
                 <p>List user</p>
-                <List
-                  style={{
-                    maxHeight: "45vh",
-                    overflow: "auto"
-                  }}
-                  component="nav"
-                  aria-label="main mailbox folders">
+                <List className="list-container" component="nav" aria-label="main mailbox folders">
                   {this.state.rooms.map((d) => {
                     if (d.room === myRoom.room || "") {
                       return <div />;
                     }
-                    return (
-                      <ListItem
-                        style={{
-                          borderRadius: 10
-                        }}
-                        disabled={username.length < 3}
-                        button
-                        onClick={() => this.join(d)}>
-                        <ListItemAvatar>
-                          <Avatar />
-                        </ListItemAvatar>
-                        <ListItemText
-                          primary={`${d.username}`}
-                          secondary={
-                            <p>
-                              {d.onGame ? (
-                                <span
-                                  style={{
-                                    color: "red"
-                                  }}>
-                                  In game
-                                </span>
-                              ) : (
-                                <span
-                                  style={{
-                                    color: "#52BE80"
-                                  }}>
-                                  Waiting for friends to play
-                                </span>
-                              )}
-                            </p>
-                          }
-                        />
-                      </ListItem>
-                    );
+                    return <ListRoom username={username} data={d} onclick={() => this.join(d)} />;
                   })}
                 </List>
               </div>

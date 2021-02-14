@@ -1,0 +1,38 @@
+.container-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fff;
+  justify-content: space-between;
+  text-align: "center";
+}
+.image-select {
+  width: 15vh;
+  transform: rotate(290deg);
+}
+
+.result-image-left {
+  transform: rotate(20deg);
+}
+.result-image-right {
+  transform: rotate(-20deg);
+}
+.label-page-header {
+  text-align: "center";
+  align-self: center;
+  margin: 0px;
+}
+.container-image-content {
+  background-color: #fff;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.waiting-container {
+  height: 30vh;
+  width: 30vw;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}

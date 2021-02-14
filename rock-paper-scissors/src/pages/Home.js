@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { services } from "../services";
-import { Colors } from "../styles/colors";
 import io from "socket.io-client";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import DialogUsersJoin from "./components/DialogUsersJoin";

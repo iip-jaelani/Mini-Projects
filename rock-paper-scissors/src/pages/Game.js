@@ -9,13 +9,13 @@ import rock2 from "../images/rock2.png";
 import scissors1 from "../images/scissors1.png";
 import scissors2 from "../images/scissors2.png";
 //
-import "./styles/styles.css";
-import { Button } from "@material-ui/core";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import io from "socket.io-client";
 import { client } from "../config/client";
 import DialogContinue from "./components/DialogContinue";
 import DialogResultMatch from "./components/DialogResultMatch";
+import SelectionButton from "./components/SelectionButton";
+import "./styles/game.css";
 
 export class Game extends Component {
   constructor(props) {
@@ -334,53 +334,14 @@ export class Game extends Component {
     }
 
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "100vh",
-          backgroundColor: "#fff",
-          justifyContent: "space-between"
-        }}>
-        <h1
-          style={{
-            textAlign: "center",
-            margin: 0
-          }}>
-          Start your game
-        </h1>
-        <h2
-          style={{
-            textAlign: "center",
-            margin: 0
-          }}>
-          score:
-        </h2>
-
-        <h1
-          style={{
-            textAlign: "center",
-            fontSize: 60,
-            margin: 0
-          }}>
+      <div className="container-content">
+        <h1 className="label-page-header">Start your game</h1>
+        <h2 className="label-page-header">score:</h2>
+        <h1 className="label-page-header">
           {yourScore} - {rivalScore}
         </h1>
-        <h1
-          style={{
-            textAlign: "center",
-            // fontSize: 60,
-            margin: 0
-          }}>
-          00.0{this.state.timer}
-        </h1>
-
-        <div
-          style={{
-            backgroundColor: "#fff",
-            alignItems: "center",
-            display: "flex",
-            justifyContent: "center"
-          }}>
+        <h1 className="label-page-header">00.0{this.state.timer}</h1>
+        <div className="container-image-content">
           {this.state.pick ? (
             <img
               className="result-image-left"
@@ -391,17 +352,7 @@ export class Game extends Component {
               }}
             />
           ) : (
-            <div
-              style={{
-                height: "30vh",
-                width: "30vw",
-                textAlign: "center",
-                justifyContent: "center",
-                display: "flex",
-                alignItems: "center"
-              }}>
-              <p>waiting. . .</p>
-            </div>
+            <WaitingAction />
           )}
           {rivalImage ? (
             <img
@@ -413,28 +364,18 @@ export class Game extends Component {
               }}
             />
           ) : (
-            <div
-              style={{
-                height: "30vh",
-                width: "30vw",
-                textAlign: "center",
-                justifyContent: "center",
-                display: "flex",
-                alignItems: "center"
-              }}>
-              <p>waiting. . .</p>
-            </div>
+            <WaitingAction />
           )}
         </div>
         <div
           style={{
             display: "flex",
-            padding: 10,
+            // padding: ,
             justifyContent: "center"
           }}>
-          <SelectionAction disabled={this.state.session === 5} type={1} onPress={this.handlePickItems} />
-          <SelectionAction disabled={this.state.session === 5} type={2} onPress={this.handlePickItems} />
-          <SelectionAction disabled={this.state.session === 5} type={3} onPress={this.handlePickItems} />
+          <SelectionButton disabled={this.state.session === 5} type={1} onClick={this.handlePickItems} />
+          <SelectionButton disabled={this.state.session === 5} type={2} onClick={this.handlePickItems} />
+          <SelectionButton disabled={this.state.session === 5} type={3} onClick={this.handlePickItems} />
         </div>
         <DialogContinue open={dialogShow} continueGame={() => this._continueGame()} leaveGame={() => this._leaveGame()} />
         <DialogResultMatch open={dialogEndGame} playAgain={() => this._playAgain()} backHome={() => this._leaveGame()} score={`${yourScore} - ${rivalScore} `} compare={message} />
@@ -445,45 +386,10 @@ export class Game extends Component {
 
 export default withRouter(Game);
 
-function SelectionAction({ type, onPress, disabled }) {
-  var image = rock2;
-  var name = "";
-  var value = 0;
-  switch (type) {
-    case 1:
-      image = rock2;
-      name = "Rock";
-      value = 1;
-      break;
-    case 2:
-      image = paper2;
-      name = "Paper";
-      value = 2;
-      break;
-    case 3:
-      image = scissors2;
-      name = "Scissors";
-      value = 3;
-      break;
-    default:
-      break;
-  }
+const WaitingAction = () => {
   return (
-    <Button
-      disabled={disabled}
-      onClick={() => onPress(value)}
-      style={{
-        borderRadius: 20
-      }}>
-      <div
-        style={{
-          border: "2px solid #aaa",
-          borderRadius: 20,
-          margin: 5
-        }}>
-        <img className="image-select" alt="images" src={image} />
-        <p>{name}</p>
-      </div>
-    </Button>
+    <div className="waiting-container">
+      <p>Waiting. . .</p>
+    </div>
   );
-}
+};

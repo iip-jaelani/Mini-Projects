@@ -1,2 +1,83 @@
 .container {
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+  justify-content: center;
+  background-color: #ebf5fb;
+}
+
+.sub-container {
+  display: flex;
+  align-self: center;
+  background-color: #fff;
+  height: 60vh;
+  width: 60vw;
+  border-radius: 3px;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header-container {
+  background-color: #5499c7;
+  width: 100%;
+  padding: 10px;
+}
+.label-header {
+  color: #fff;
+  font-weight: bold;
+}
+
+.grid-container {
+  height: 100%;
+  display: flex;
+  flex: 1;
+}
+
+.item-grid-container {
+  padding: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: "center";
+}
+
+.container-input {
+  padding: 20%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-button {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.item-second-grid {
+  background-color: #efefef;
+  height: 100%;
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.sub-item-second-grid {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  font-weight: bold;
+}
+.list-container {
+  max-height: 45vh;
+  overflow: auto;
 }

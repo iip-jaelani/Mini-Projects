@@ -7,39 +7,36 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 const DialogContinue = ({ continueGame, leaveGame, data, open }) => {
-	const handleClose = (confirm) => {
-		if (confirm) {
-			continueGame();
-		} else {
-			leaveGame();
-		}
-	};
+  const handleClose = (confirm) => {
+    if (confirm) {
+      continueGame();
+    } else {
+      leaveGame();
+    }
+  };
 
-	return (
-		<div>
-			<Dialog
-				open={open}
-				// onClose={handleClose}
-				aria-labelledby="alert-dialog-title"
-				aria-describedby="alert-dialog-description"
-			>
-				<DialogTitle id="alert-dialog-title">Start your game</DialogTitle>
-				<DialogContent>
-					<DialogContentText id="alert-dialog-description">
-						Please click yes to start the game
-					</DialogContentText>
-				</DialogContent>
-				<DialogActions>
-					<Button onClick={() => handleClose(false)} color="primary">
-						No
-					</Button>
-					<Button onClick={() => handleClose(true)} color="primary" autoFocus>
-						Yes
-					</Button>
-				</DialogActions>
-			</Dialog>
-		</div>
-	);
+  return (
+    <div>
+      <Dialog
+        open={open}
+        // onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description">
+        <DialogTitle id="alert-dialog-title">Start your game</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">Please click yes to start the game</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleClose(false)} color="primary">
+            No
+          </Button>
+          <Button onClick={() => handleClose(true)} color="primary" autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
 };
 
 export default DialogContinue;

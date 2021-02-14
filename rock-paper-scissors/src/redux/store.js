@@ -7,11 +7,9 @@ const { logger } = require("redux-logger");
 const middleware = [thunk, promise];
 
 if (process.env.NODE_ENV === "development") {
-	middleware.push(logger);
+  middleware.push(logger);
 }
 
-const store = compose(applyMiddleware(...middleware))(createStore)(
-	combineReducers
-);
+const store = compose(applyMiddleware(...middleware))(createStore)(combineReducers);
 
 export default store;

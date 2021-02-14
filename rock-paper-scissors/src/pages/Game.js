@@ -157,11 +157,9 @@ export class Game extends Component {
       if (this.state.timer === 0) {
         this.setState({
           timer: 3,
-          rivalImage: null,
           dialogShow: true,
           countReady: 0
         });
-
         // this._continueGame();
         this.validationPoint();
         clearInterval(inter);
@@ -235,10 +233,6 @@ export class Game extends Component {
       });
       console.log(`rival win ${y}-${x}`);
     }
-    this.setState({
-      pick: null,
-      rivalPick: null
-    });
 
     if (this.state.yourScore === this.state.rivalScore) {
       if (this.state.session === 5) {
@@ -274,21 +268,21 @@ export class Game extends Component {
   };
 
   _continueGame() {
-    //
     const { room } = this.state;
     const { name } = this.props.match.params;
     this.socket.emit("confirm_ready", { room, name });
     this.setState({
-      dialogShow: false
+      dialogShow: false,
+      pick: null,
+      rivalImage: null,
+      rivalPick: null
     });
   }
   _leaveGame() {
-    //
     this.setState({
       dialogShow: false
     });
     this.props.history.push("/");
-    //
   }
   _playAgain = () => {
     this.setState({

@@ -1,0 +1,11 @@
+.image-select {
+	width: 15vh;
+	transform: rotate(290deg);
+}
+
+.result-image-left {
+	transform: rotate(20deg);
+}
+.result-image-right {
+	transform: rotate(-20deg);
+}

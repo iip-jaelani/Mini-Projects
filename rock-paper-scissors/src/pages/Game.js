@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Colors } from "../styles/colors";
 //images
 import paper2 from "../images/paper2.png";
 import paper1 from "../images/paper1.png";
@@ -12,7 +11,6 @@ import scissors2 from "../images/scissors2.png";
 //
 import "./styles/styles.css";
 import { Button } from "@material-ui/core";
-import { services } from "../services";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import io from "socket.io-client";
 import { client } from "../config/client";
@@ -57,7 +55,6 @@ export class Game extends Component {
 	}
 	_confirmGame() {
 		const { room } = this.state;
-		const { name } = this.props.match.params;
 		this.socket.on("rival_ready", (d) => {
 			if (d.room === room) {
 				this.setState(
@@ -115,8 +112,7 @@ export class Game extends Component {
 	}
 
 	intervalPick() {
-		const { pick, id, room } = this.state;
-		const { name } = this.props.match.params;
+		const { room } = this.state;
 
 		var inter_2 = setInterval(() => {
 			var r = Math.floor(Math.random() * (3 - 1 + 1)) + 1;

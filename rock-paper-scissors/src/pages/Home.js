@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import { services } from "../services";
 import { Colors } from "../styles/colors";
 import io from "socket.io-client";
-import { Link, withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import { Button, Collapse, IconButton } from "@material-ui/core";
-import { v4 as uuidv4 } from "uuid";
-import { Alert } from "@material-ui/lab";
-import { Close } from "@material-ui/icons";
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import DialogUsersJoin from "./components/DialogUsersJoin";
 import { client } from "../config/client";
 

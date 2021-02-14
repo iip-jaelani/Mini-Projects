@@ -4,18 +4,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { Colors } from "../../styles/colors";
-import ParticlesBg from "particles-bg";
 
-const DialogResultMatch = ({
-	message,
-	playAgain,
-	backHome,
-	open,
-	score,
-	compare,
-}) => {
+const DialogResultMatch = ({ playAgain, backHome, open, score, compare }) => {
 	const handleClose = (confirm) => {
 		if (confirm) {
 			playAgain();

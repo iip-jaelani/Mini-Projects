@@ -1,4 +1,4 @@
-# Rock Paper Scissors
+# Rock Paper Scissors Game
 
 ![Screen Recording 2021-02-14 at 11 54 23](https://user-images.githubusercontent.com/36758965/107869634-cacbd980-6ec2-11eb-9e55-b57b99335f89.gif)
 
